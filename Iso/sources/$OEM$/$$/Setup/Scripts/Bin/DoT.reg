@@ -1,0 +1,27 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Dnscache\Parameters\DohSettings]
+"DohPolicy"=dword:00000003
+; 0 = Disabled
+; 1 = Opportunistic (try DoH, fallback to unencrypted)
+; 2 = Required (DoH only, fail if not available)
+; 3 = Required + Disable DoH fallback to plaintext (recommended for privacy)
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows NT\DNSClient\DohPolicy]
+"Policy"=dword:00000003
+
+; Cloudflare Primary + Family (malware + adult blocking) templates
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Dnscache\Parameters\DohServerSettings\cloudflare-dns.com]
+"Template"="https://cloudflare-dns.com/dns-query"
+"AuthenticationName"="cloudflare-dns.com"
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Dnscache\Parameters\DohServerSettings\family.cloudflare-dns.com]
+"Template"="https://family.cloudflare-dns.com/dns-query"
+"AuthenticationName"="family.cloudflare-dns.com"
+
+; Set Cloudflare as the default DoH server (standard 1.1.1.1)
+[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows NT\DNSClient\AlternateDohServerList]
+"cloudflare"="cloudflare-dns.com"
+
+; Optional: If you prefer the family/malware-blocking version instead, use this line and comment the one above:
+; "cloudflare"="family.cloudflare-dns.com"
