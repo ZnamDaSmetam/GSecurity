@@ -28,13 +28,13 @@ for %%d in (A B C D E F G H I J K L M N O P Q R S T U V W X Y Z) do (
     if exist "%%d:\" (
 	takeown /f "%%d:\" /A
 	icacls "%%d:\" /remove "Authenticated Users"
-	icacls "%%d:\" /grant "Authenticated Users":(OI)(CI)(RD,REA,RC,RA,X,GR)
+	icacls "%%d:\" /grant "Authenticated Users":(RD,REA,RC,RA,X,GR)
         icacls "%%d:\" /remove "Users"
-	icacls "%%d:\" /grant "Users":(OI)(CI)(RD,REA,RC,RA,X,GR)
+	icacls "%%d:\" /grant "Users":(RD,REA,RC,RA,X,GR)
 	icacls "%%d:\" /remove "System"
-	icacls "%%d:\" /grant "System":(OI)(CI)(RD,REA,RC,RA,X,GR)
+	icacls "%%d:\" /grant "System":(RD,REA,RC,RA,X,GR)
         icacls "%%d:\" /remove "Administrators"
-	icacls "%%d:\" /grant "Administrators":(OI)(CI)(RD,REA,RC,RA,X,GR)
+	icacls "%%d:\" /grant "Administrators":(RD,REA,RC,RA,X,GR)
 	icacls "%%d:\" /setowner "NT SERVICE\TrustedInstaller"
 	)
 )
